@@ -10,7 +10,7 @@ const Header = () => {
               src="/crwn.svg"
               alt="crwn logo"
               width="28"
-              class="mb-2 ms-2 d-inline-block"
+              className="mb-2 ms-2 d-inline-block"
             />
             <span className="ms-2 text-dark">Crwn</span>
           </Link>
