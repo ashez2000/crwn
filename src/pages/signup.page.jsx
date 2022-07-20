@@ -1,28 +1,31 @@
 import { useState } from 'react'
 import {
   googleLoginWithPopup,
-  signInAuthUserWithEmailAndPassword,
+  createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from '../lib/firebase/firebase.lib'
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const [password, setPassword] = useState('')
 
   const googleLogin = async () => {
     const { user } = await googleLoginWithPopup()
-    createUserDocumentFromAuth(user)
+    console.log(user)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password)
+      const { user } = await createAuthUserWithEmailAndPassword(email, password)
+      await createUserDocumentFromAuth(user, { displayName })
     } catch (err) {
       alert(err.message)
     }
 
+    setDisplayName('')
     setEmail('')
     setPassword('')
   }
@@ -34,10 +37,18 @@ const LoginPage = () => {
         style={{ minWidth: '24rem' }}
         onSubmit={handleSubmit}
       >
-        <h3 className="mb-5 text-primary">Login</h3>
+        <h3 className="mb-5 text-primary">Signup</h3>
         <input
           className="form-control mb-3"
           type="text"
+          placeholder="name"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          required
+        />
+        <input
+          className="form-control mb-3"
+          type="email"
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -51,18 +62,18 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <input className="btn btn-dark mb-3" type="submit" value="Login" />
+        <input className="btn btn-dark mb-3" type="submit" value="Signup" />
         <hr />
         <button
           className="btn btn-primary my-4"
           type="button"
           onClick={googleLogin}
         >
-          Login With Google
+          Signup With Google
         </button>
       </form>
     </div>
   )
 }
 
-export default LoginPage
+export default SignUpPage
