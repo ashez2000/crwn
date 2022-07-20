@@ -40,10 +40,14 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password)
 }
 
+<<<<<<< HEAD
 export const signOutUser = async () => await signOut(auth)
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback)
+=======
+export const signOutUser = () => signOut(auth)
+>>>>>>> 2589e21e9b92cff11b30a4b7cce416dd2a71f092
 
 // Firestore
 export const firestore = getFirestore(app)
