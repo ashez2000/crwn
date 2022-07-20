@@ -4,21 +4,26 @@ import {
   signInAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from '../lib/firebase/firebase.lib'
+import { useAuth } from '../contexts/auth/auth.context'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { setCurrentUser } = useAuth()
+
   const googleLogin = async () => {
     const { user } = await googleLoginWithPopup()
     createUserDocumentFromAuth(user)
+    setCurrentUser(user)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password)
+      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+      setCurrentUser(user)
     } catch (err) {
       alert(err.message)
     }
