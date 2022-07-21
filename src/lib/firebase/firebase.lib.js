@@ -8,7 +8,15 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth'
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  collection,
+  query,
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCzO8-LMfqkTjntHogcniZ481-ozOJFiy0',
@@ -76,4 +84,18 @@ export const createUserDocumentFromAuth = async (
   }
 
   return userDocRef
+}
+
+export const getCollectionsAndDocuments = async () => {
+  const collectionRef = collection(firestore, 'collections')
+  const q = query(collectionRef)
+
+  const querySnapshot = await getDocs(q)
+  const collectionMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
+    acc[title.toLowerCase()] = items
+    return acc
+  }, {})
+
+  return collectionMap
 }
