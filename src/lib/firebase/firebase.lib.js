@@ -7,7 +7,15 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  collection,
+  query,
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCzO8-LMfqkTjntHogcniZ481-ozOJFiy0',
@@ -40,14 +48,10 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password)
 }
 
-<<<<<<< HEAD
 export const signOutUser = async () => await signOut(auth)
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback)
-=======
-export const signOutUser = () => signOut(auth)
->>>>>>> 2589e21e9b92cff11b30a4b7cce416dd2a71f092
 
 // Firestore
 export const firestore = getFirestore(app)
@@ -79,4 +83,18 @@ export const createUserDocumentFromAuth = async (
   }
 
   return userDocRef
+}
+
+export const getCollectionsAndDocuments = async () => {
+  const collectionRef = collection(firestore, 'collections')
+  const q = query(collectionRef)
+
+  const querySnapshot = await getDocs(q)
+  const collectionMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
+    acc[title.toLowerCase()] = items
+    return acc
+  }, {})
+
+  return collectionMap
 }
