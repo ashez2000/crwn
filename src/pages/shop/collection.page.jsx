@@ -1,28 +1,12 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getCollectionsAndDocuments } from '../../lib/firebase/firebase.lib'
 
+import { useCollection } from '../../contexts/collection/collection.context'
 import ItemCard from '../../components/item-card/item-card.component'
 
 const CollectionPage = () => {
-  const [collection, setCollection] = useState([])
-  const [loading, setLoading] = useState(true)
-
+  const { collections } = useCollection()
   const { collectionId } = useParams()
-
-  useEffect(() => {
-    const fetchCollection = async () => {
-      const c = await getCollectionsAndDocuments()
-      setCollection(c[collectionId])
-      setLoading(false)
-    }
-
-    fetchCollection()
-  }, [])
-
-  if (loading) {
-    return <div>Loading...</div>
-  }
+  const collection = collections[collectionId]
 
   return (
     <section className="container">

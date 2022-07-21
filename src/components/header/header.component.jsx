@@ -20,6 +20,12 @@ const Header = () => {
           </Link>
 
           <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" to="/shop">
+                Shop
+              </Link>
+            </li>
+
             {!currentUser && (
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
