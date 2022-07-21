@@ -1,4 +1,8 @@
+import { useCart } from '../../contexts/cart/cart.context'
+
 const ItemCard = ({ item }) => {
+  const { addItemToCart } = useCart()
+
   return (
     <div
       className="d-flex flex-column align-items-center mb-4"
@@ -15,7 +19,12 @@ const ItemCard = ({ item }) => {
       <div className="d-flex flex-column w-100">
         <p>Name: {item.name}</p>
         <p>Price: ${item.price}</p>
-        <button className="btn btn-secondary">Add to cart</button>
+        <button
+          className="btn btn-secondary"
+          onClick={() => addItemToCart(item)}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   )

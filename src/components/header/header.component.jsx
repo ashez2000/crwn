@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/auth/auth.context'
+import { useCart } from '../../contexts/cart/cart.context'
 import { signOutUser } from '../../lib/firebase/firebase.lib'
 
 const Header = () => {
   const { currentUser } = useAuth()
+  const { cartCount } = useCart()
 
   return (
     <header className="mb-3">
@@ -29,6 +31,9 @@ const Header = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/checkout">
                 Cart
+                <span className="badge mx-1 text-primary">
+                  {cartCount ? cartCount : null}
+                </span>
               </Link>
             </li>
 
@@ -50,11 +55,7 @@ const Header = () => {
 
             {currentUser && (
               <li className="nav-item">
-                <span
-                  className="nav-link"
-                  onClick={signOutUser}
-                  style={{ cursor: 'pointer' }}
-                >
+                <span className="nav-link cursor-pointer" onClick={signOutUser}>
                   Signout
                 </span>
               </li>

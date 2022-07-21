@@ -4,11 +4,15 @@ import { addCartItem, removeCartItem, clearCartItem } from './cart.utils'
 const CartContext = createContext({
   cartItems: [],
   cartCount: 0,
+  cartTotal: 0,
+  addItemToCart: () => {},
+  removeItemFromCart: () => {},
+  clearItemFromCart: () => {},
 })
 
 export const useCart = () => useContext(CartContext)
 
-export const CollectionProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([])
   const [cartCount, setCartCount] = useState(0)
   const [cartTotal, setCartTotal] = useState(0)
@@ -33,7 +37,7 @@ export const CollectionProvider = ({ children }) => {
     setCartItems(addCartItem(cartItems, productToAdd))
   }
 
-  const removeItemToCart = (cartItemToRemove) => {
+  const removeItemFromCart = (cartItemToRemove) => {
     setCartItems(removeCartItem(cartItems, cartItemToRemove))
   }
 
@@ -46,7 +50,7 @@ export const CollectionProvider = ({ children }) => {
     cartCount,
     cartTotal,
     addItemToCart,
-    removeItemToCart,
+    removeItemFromCart,
     clearItemFromCart,
   }
 

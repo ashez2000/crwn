@@ -8,6 +8,10 @@ const CollectionPage = () => {
   const { collectionId } = useParams()
   const collection = collections[collectionId]
 
+  if (!collection) {
+    return <div>Loading...</div>
+  }
+
   return (
     <section className="container">
       <h4 className="text-center text-primary mb-4">

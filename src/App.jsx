@@ -1,7 +1,8 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/header/header.component'
+import Footer from './components/footer/footer.component'
 import HomePage from './pages/home.page'
 import LoginPage from './pages/login.page'
 import SignUpPage from './pages/signup.page'
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
+      <Footer />
     </Fragment>
   )
 }
