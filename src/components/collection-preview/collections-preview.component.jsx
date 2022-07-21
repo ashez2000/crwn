@@ -21,13 +21,15 @@ const SingleCollectionPreview = ({ title, items }) => {
   return (
     <div>
       <Link to={`/shop/${title}`}>
-        <h1>{title.toUpperCase()}</h1>
+        <h3 className="text-dark mb-4">{title.toUpperCase()}</h3>
       </Link>
-      <div>
+      <div className="row">
         {items
           .filter((item, idx) => idx < 4)
           .map((item) => (
-            <ItemCard key={item.id} item={item} />
+            <div className="col-12 col-md-3 mb-4" key={item.id}>
+              <ItemCard item={item} />
+            </div>
           ))}
       </div>
     </div>

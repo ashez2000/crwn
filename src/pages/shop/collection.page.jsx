@@ -10,10 +10,18 @@ const CollectionPage = () => {
 
   return (
     <section className="container">
-      <h3>{collectionId.toUpperCase()}</h3>
-      {collection.map((item) => {
-        return <ItemCard key={item.id} item={item} />
-      })}
+      <h4 className="text-center text-primary mb-4">
+        {collectionId.toUpperCase()}
+      </h4>
+      <div className="row">
+        {collection.map((item) => {
+          return (
+            <div className="col-12 col-md-3" key={item.id}>
+              <ItemCard item={item} />
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }
