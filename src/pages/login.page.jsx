@@ -2,7 +2,6 @@ import { useState } from 'react'
 import {
   googleLoginWithPopup,
   signInAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
 } from '../lib/firebase/firebase.lib'
 
 const LoginPage = () => {
@@ -10,8 +9,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
 
   const googleLogin = async () => {
-    const { user } = await googleLoginWithPopup()
-    createUserDocumentFromAuth(user)
+    await googleLoginWithPopup()
   }
 
   const handleSubmit = async (e) => {

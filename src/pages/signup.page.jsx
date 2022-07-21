@@ -11,8 +11,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('')
 
   const googleLogin = async () => {
-    const { user } = await googleLoginWithPopup()
-    console.log(user)
+    await googleLoginWithPopup()
   }
 
   const handleSubmit = async (e) => {
