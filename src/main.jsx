@@ -7,12 +7,15 @@ import './styles/main.css'
 
 import App from './App'
 import { AuthProvider } from './contexts/auth/auth.context'
+import { CollectionProvider } from './contexts/collection/collection.context'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <CollectionProvider>
+          <App />
+        </CollectionProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
