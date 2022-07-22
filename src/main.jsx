@@ -6,7 +6,6 @@ import './styles/bootstrap.min.css'
 import './styles/main.css'
 
 import App from './App'
-import { CollectionProvider } from './contexts/collection/collection.context'
 import { CartProvider } from './contexts/cart/cart.context'
 import ReduxProvider from './store/provider'
 
@@ -14,11 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <ReduxProvider>
-        <CollectionProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CollectionProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
       </ReduxProvider>
     </BrowserRouter>
   </React.StrictMode>
