@@ -1,7 +1,8 @@
-import { useCart } from '../../contexts/cart/cart.context'
+import { useDispatch } from 'react-redux'
+import { addItemToCart } from '../../store/cart/cart.slice'
 
 const ItemCard = ({ item }) => {
-  const { addItemToCart } = useCart()
+  const dispatch = useDispatch()
 
   return (
     <div
@@ -21,7 +22,7 @@ const ItemCard = ({ item }) => {
         <p>Price: ${item.price}</p>
         <button
           className="btn btn-secondary"
-          onClick={() => addItemToCart(item)}
+          onClick={() => dispatch(addItemToCart(item))}
         >
           Add to cart
         </button>

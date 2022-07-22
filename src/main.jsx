@@ -6,16 +6,13 @@ import './styles/bootstrap.min.css'
 import './styles/main.css'
 
 import App from './App'
-import { CartProvider } from './contexts/cart/cart.context'
 import ReduxProvider from './store/provider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <ReduxProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
+        <App />
       </ReduxProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { useCart } from '../../contexts/cart/cart.context'
 import { signOutUser } from '../../lib/firebase/firebase.lib'
 import { selectCurrentUser } from '../../store/auth/auth.selector'
+import { selectCartItemsCount } from '../../store/cart/cart.selector'
 
 const Header = () => {
-  const { cartCount } = useCart()
   const currentUser = useSelector(selectCurrentUser)
-  console.log(currentUser)
+  const cartItemsCount = useSelector(selectCartItemsCount)
 
   return (
     <header className="mb-3">
@@ -35,7 +34,7 @@ const Header = () => {
               <Link className="nav-link" to="/checkout">
                 Cart
                 <span className="badge mx-1 text-primary">
-                  {cartCount ? cartCount : null}
+                  {cartItemsCount ? cartItemsCount : null}
                 </span>
               </Link>
             </li>

@@ -1,13 +1,17 @@
-import { useCart } from '../contexts/cart/cart.context'
+import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  addItemToCart,
+  removeItemFromCart,
+  clearItemFromCart,
+} from '../store/cart/cart.slice'
+import { selectCartItems, selectCartTotal } from '../store/cart/cart.selector'
 
 const CheckoutPage = () => {
-  const {
-    cartItems,
-    cartTotal,
-    addItemToCart,
-    removeItemFromCart,
-    clearItemFromCart,
-  } = useCart()
+  const dispatch = useDispatch()
+
+  const cartItems = useSelector(selectCartItems)
+  const cartTotal = useSelector(selectCartTotal)
 
   return (
     <div className="container">
@@ -28,14 +32,14 @@ const CheckoutPage = () => {
               <td>
                 <span
                   className="btn btn-secondary me-4"
-                  onClick={() => addItemToCart(item)}
+                  onClick={() => dispatch(addItemToCart(item))}
                 >
                   +
                 </span>
                 {item.quantity}
                 <span
                   className="btn btn-secondary ms-4"
-                  onClick={() => removeItemFromCart(item)}
+                  onClick={() => dispatch(removeItemFromCart(item))}
                 >
                   -
                 </span>
@@ -43,7 +47,7 @@ const CheckoutPage = () => {
               <td>$ {item.price}</td>
               <td
                 className="text-danger cursor-pointer"
-                onClick={() => clearItemFromCart(item)}
+                onClick={() => dispatch(clearItemFromCart(item))}
               >
                 remove
               </td>
