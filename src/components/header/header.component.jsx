@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
-import { useAuth } from '../../contexts/auth/auth.context'
+import { useSelector } from 'react-redux'
+
 import { useCart } from '../../contexts/cart/cart.context'
 import { signOutUser } from '../../lib/firebase/firebase.lib'
+import { selectCurrentUser } from '../../store/auth/auth.selector'
 
 const Header = () => {
-  const { currentUser } = useAuth()
   const { cartCount } = useCart()
+  const currentUser = useSelector(selectCurrentUser)
+  console.log(currentUser)
 
   return (
     <header className="mb-3">

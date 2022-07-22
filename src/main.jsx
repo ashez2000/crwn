@@ -6,20 +6,20 @@ import './styles/bootstrap.min.css'
 import './styles/main.css'
 
 import App from './App'
-import { AuthProvider } from './contexts/auth/auth.context'
 import { CollectionProvider } from './contexts/collection/collection.context'
 import { CartProvider } from './contexts/cart/cart.context'
+import ReduxProvider from './store/provider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+      <ReduxProvider>
         <CollectionProvider>
           <CartProvider>
             <App />
           </CartProvider>
         </CollectionProvider>
-      </AuthProvider>
+      </ReduxProvider>
     </BrowserRouter>
   </React.StrictMode>
 )
