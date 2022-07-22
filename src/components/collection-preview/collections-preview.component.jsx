@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { useCollection } from '../../contexts/collection/collection.context'
 import ItemCard from '../item-card/item-card.component'
+import { selectCollectionsMap } from '../../store/collection/collection.selector'
 
 const CollectionsPreview = () => {
-  const { collections } = useCollection()
+  const collections = useSelector(selectCollectionsMap)
 
   return (
     <section className="container">

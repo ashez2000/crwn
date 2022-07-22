@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { useCollection } from '../../contexts/collection/collection.context'
 import ItemCard from '../../components/item-card/item-card.component'
 
+import { selectCollectionsMap } from '../../store/collection/collection.selector'
+
 const CollectionPage = () => {
-  const { collections } = useCollection()
   const { collectionId } = useParams()
+  const collections = useSelector(selectCollectionsMap)
   const collection = collections[collectionId]
 
   if (!collection) {
-    return <div>Loading...</div>
+    return <div>Loading</div>
   }
 
   return (
