@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import {
   addItemToCart,
@@ -14,6 +15,17 @@ const CheckoutPage = () => {
 
   const cartItems = useSelector(selectCartItems)
   const cartTotal = useSelector(selectCartTotal)
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="container d-flex flex-column justify-content-center align-items-center">
+        <h3 className="mb-5 text-primary">Your cart is empty</h3>
+        <Link to="/shop" className="btn btn-dark mb-3">
+          Continue Shopping
+        </Link>
+      </div>
+    )
+  }
 
   return (
     <div className="container">
