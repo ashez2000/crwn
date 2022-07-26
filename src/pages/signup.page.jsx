@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import {
   googleLoginWithPopup,
   createAuthUserWithEmailAndPassword,
@@ -10,8 +12,11 @@ const SignUpPage = () => {
   const [displayName, setDisplayName] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+
   const googleLogin = async () => {
     await googleLoginWithPopup()
+    navigate('/')
   }
 
   const handleSubmit = async (e) => {
@@ -27,6 +32,8 @@ const SignUpPage = () => {
     setDisplayName('')
     setEmail('')
     setPassword('')
+
+    navigate('/')
   }
 
   return (
