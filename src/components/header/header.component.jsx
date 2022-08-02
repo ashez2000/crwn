@@ -11,59 +11,35 @@ const Header = () => {
 
   return (
     <header className="mb-3">
-      <nav className="navbar navbar-expand-lg">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
+      <nav className="p-3 flex justify-between items-center h-24">
+        <h1 className="text-xl font-semibold">
+          <Link to="/">
             <img
+              className="inline w-8 h-8 mb-3 mr-2 "
               src="/crwn.svg"
               alt="crwn logo"
-              width="28"
-              className="mb-2 ms-2 d-inline-block"
             />
-            <span className="ms-2 text-dark">Crwn</span>
+            Crwn
           </Link>
-
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/shop">
-                Shop
-              </Link>
+        </h1>
+        <ul className="flex space-x-3">
+          <li>
+            <Link to="/shop">Shop</Link>
+          </li>
+          <li>
+            <Link to="/checkout">Cart</Link>
+          </li>
+          {currentUser && (
+            <li className="cursor-pointer">
+              <span onClick={signOutUser}>Logout</span>
             </li>
-
-            <li className="nav-item">
-              <Link className="nav-link" to="/checkout">
-                Cart
-                <span className="badge mx-1 text-primary">
-                  {cartItemsCount ? cartItemsCount : null}
-                </span>
-              </Link>
+          )}
+          {!currentUser && (
+            <li>
+              <Link to="/login">Login</Link>
             </li>
-
-            {!currentUser && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li>
-            )}
-
-            {!currentUser && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">
-                  Signup
-                </Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <span className="nav-link cursor-pointer" onClick={signOutUser}>
-                  Signout
-                </span>
-              </li>
-            )}
-          </ul>
-        </div>
+          )}
+        </ul>
       </nav>
     </header>
   )

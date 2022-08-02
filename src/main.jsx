@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Elements } from '@stripe/react-stripe-js'
 
-import './styles/bootstrap.min.css'
 import './styles/main.css'
 
 import App from './App'

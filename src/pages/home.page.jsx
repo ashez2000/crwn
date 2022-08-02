@@ -2,9 +2,9 @@ import Directory from '../components/directory/directory.component'
 
 const HomePage = () => {
   return (
-    <div className="container">
+    <main className="px-3">
       <Directory />
-    </div>
+    </main>
   )
 }
 
