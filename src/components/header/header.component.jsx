@@ -12,17 +12,10 @@ const Header = () => {
   return (
     <header className="mb-3">
       <nav className="p-3 flex justify-between items-center h-24">
-        <h1 className="text-xl font-semibold">
-          <Link to="/">
-            <img
-              className="inline w-8 h-8 mb-3 mr-2 "
-              src="/crwn.svg"
-              alt="crwn logo"
-            />
-            Crwn
-          </Link>
+        <h1 className="text-xl text-yellow-500 font-semibold ">
+          <Link to="/">Crwn</Link>
         </h1>
-        <ul className="flex space-x-3">
+        <ul className="flex space-x-3 font-semibold">
           <li>
             <Link to="/shop">Shop</Link>
           </li>
