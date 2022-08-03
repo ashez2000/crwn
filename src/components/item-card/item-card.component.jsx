@@ -5,7 +5,7 @@ const ItemCard = ({ item }) => {
   const dispatch = useDispatch()
 
   return (
-    <div className="mb-14 w-full">
+    <div className="mb-14 w-full px-6">
       <div
         className="h-96 w-full bg-cover mb-3 rounded-md overflow-hidden"
         style={{ backgroundImage: `url(${item.imageUrl})` }}
