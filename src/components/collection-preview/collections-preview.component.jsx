@@ -8,13 +8,13 @@ const CollectionsPreview = () => {
   const collections = useSelector(selectCollectionsMap)
 
   return (
-    <section className="container">
+    <div className="px-3">
       {Object.keys(collections).map((k) => {
         return (
           <SingleCollectionPreview key={k} title={k} items={collections[k]} />
         )
       })}
-    </section>
+    </div>
   )
 }
 
@@ -22,7 +22,9 @@ const SingleCollectionPreview = ({ title, items }) => {
   return (
     <div>
       <Link to={`/shop/${title}`}>
-        <h3 className="text-dark mb-4">{title.toUpperCase()}</h3>
+        <h3 className="text-2xl text-center text-yellow-500 font-semibold mb-10">
+          {title.toUpperCase()}
+        </h3>
       </Link>
       <div className="row">
         {items
