@@ -37,7 +37,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="flex flex-col px-3 mb-3">
+    <main className="max-w-lg mx-auto flex flex-col px-3 mb-3">
       <h3 className="text-3xl text-yellow-500 font-semibold mb-3">Signup</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -84,7 +84,7 @@ const SignUpPage = () => {
           Login
         </Link>
       </p>
-    </div>
+    </main>
   )
 }
 

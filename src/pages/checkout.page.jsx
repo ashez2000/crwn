@@ -16,7 +16,7 @@ const CheckoutPage = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className="flex flex-col px-3">
+      <main className="max-w-4xl mx-auto flex flex-col px-3">
         <h3 className="text-center text-2xl font-semibold mb-3">
           Your cart is empty !
         </h3>
@@ -26,12 +26,12 @@ const CheckoutPage = () => {
         >
           Continue Shopping
         </Link>
-      </div>
+      </main>
     )
   }
 
   return (
-    <div className="px-3">
+    <main className="max-w-4xl mx-auto px-3">
       <div className="flex flex-col">
         {cartItems.map((cartItem) => (
           <CheckoutItem key={cartItem.id} cartItem={cartItem} />
@@ -41,7 +41,7 @@ const CheckoutPage = () => {
         SubTotal : <span className="text-gray-700">${cartTotal}</span>
       </h3>
       <PaymentForm />
-    </div>
+    </main>
   )
 }
 

@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className="mb-3">
-      <nav className="p-3 flex justify-between items-center h-24">
+      <nav className="p-3 flex justify-between items-center h-24 max-w-4xl mx-auto">
         <h1 className="text-xl text-yellow-500 font-semibold ">
           <Link to="/">Crwn</Link>
         </h1>
