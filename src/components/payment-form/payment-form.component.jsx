@@ -57,10 +57,13 @@ const PaymentForm = () => {
   }
 
   return (
-    <form onSubmit={handlePayment}>
-      <CardElement className="form-control mb-3" />
+    <form className="px-3" onSubmit={handlePayment}>
+      <CardElement className="w-full mb-3 px-3 py-2 outline-none rounded-md bg-gray-200" />
 
-      <button className="btn btn-dark mb-3" disabled={loading}>
+      <button
+        className="w-full text-center px-3 py-2 rounded-md bg-yellow-200 font-semibold mb-3 cursor-pointer"
+        disabled={loading}
+      >
         {loading ? 'Processing...' : 'Pay Now'}
       </button>
     </form>

@@ -3,27 +3,11 @@ import categories from '../../data/categories'
 
 const Directory = () => {
   return (
-    <section>
-      <div className="row">
-        <div className="col-4">
-          <CategoryItem category={categories[0]} />
-        </div>
-        <div className="col-4">
-          <CategoryItem category={categories[1]} />
-        </div>
-        <div className="col-4">
-          <CategoryItem category={categories[2]} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-6">
-          <CategoryItem category={categories[3]} />
-        </div>
-        <div className="col-6">
-          <CategoryItem category={categories[4]} />
-        </div>
-      </div>
-    </section>
+    <div className="flex flex-col space-y-3">
+      {categories.map((category) => (
+        <CategoryItem key={category.id} category={category} />
+      ))}
+    </div>
   )
 }
 

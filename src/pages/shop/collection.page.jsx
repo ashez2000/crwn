@@ -15,20 +15,16 @@ const CollectionPage = () => {
   }
 
   return (
-    <section className="container">
-      <h4 className="text-center text-primary mb-4">
+    <main className="max-w-4xl mx-auto px-3">
+      <h4 className="text-2xl text-center text-yellow-500 font-semibold mb-10">
         {collectionId.toUpperCase()}
       </h4>
-      <div className="row">
-        {collection.map((item) => {
-          return (
-            <div className="col-12 col-md-3" key={item.id}>
-              <ItemCard item={item} />
-            </div>
-          )
-        })}
+      <div className="flex flex-col justify-center items-center md:grid md:grid-cols-3 gap-6">
+        {collection.map((item) => (
+          <ItemCard key={item.id} item={item} />
+        ))}
       </div>
-    </section>
+    </main>
   )
 }
 

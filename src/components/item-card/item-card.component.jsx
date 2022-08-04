@@ -5,26 +5,21 @@ const ItemCard = ({ item }) => {
   const dispatch = useDispatch()
 
   return (
-    <div
-      className="d-flex flex-column align-items-center mb-4"
-      style={{ maxWidth: '18rem' }}
-    >
-      <div className="w-100">
-        <img
-          className="w-100 mb-3"
-          src={item.imageUrl}
-          alt="item image"
-          style={{ objectFit: 'cover', height: '22rem' }}
-        />
-      </div>
-      <div className="d-flex flex-column w-100">
-        <p>Name: {item.name}</p>
-        <p>Price: ${item.price}</p>
+    <div className="mb-14 w-full px-6 md:px-0 md:mb-3">
+      <div
+        className="h-96 w-full bg-cover mb-3 rounded-md overflow-hidden"
+        style={{ backgroundImage: `url(${item.imageUrl})` }}
+      />
+      <div>
+        <div className="flex justify-between mb-3 text-xl">
+          <p>{item.name}</p>
+          <p>${item.price}</p>
+        </div>
         <button
-          className="btn btn-secondary"
+          className="px-3 py-2 text-center font-semibold w-full bg-gray-200 rounded-md"
           onClick={() => dispatch(addItemToCart(item))}
         >
-          Add to cart
+          Add to Cart
         </button>
       </div>
     </div>

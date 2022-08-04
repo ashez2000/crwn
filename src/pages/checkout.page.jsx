@@ -11,71 +11,75 @@ import { selectCartItems, selectCartTotal } from '../store/cart/cart.selector'
 import PaymentForm from '../components/payment-form/payment-form.component'
 
 const CheckoutPage = () => {
-  const dispatch = useDispatch()
-
   const cartItems = useSelector(selectCartItems)
   const cartTotal = useSelector(selectCartTotal)
 
   if (cartItems.length === 0) {
     return (
-      <div className="container d-flex flex-column justify-content-center align-items-center">
-        <h3 className="mb-5 text-primary">Your cart is empty</h3>
-        <Link to="/shop" className="btn btn-dark mb-3">
+      <main className="max-w-4xl mx-auto flex flex-col px-3">
+        <h3 className="text-center text-2xl font-semibold mb-3">
+          Your cart is empty !
+        </h3>
+        <Link
+          className="w-full text-center px-3 py-2 rounded-md bg-yellow-200 font-semibold mb-3"
+          to="/shop"
+        >
           Continue Shopping
         </Link>
-      </div>
+      </main>
     )
   }
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-8">
-          <table className="table mb-3">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Item</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, index) => (
-                <tr key={item.id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{item.name}</td>
-                  <td>
-                    <span
-                      className="btn btn-secondary me-4"
-                      onClick={() => dispatch(addItemToCart(item))}
-                    >
-                      +
-                    </span>
-                    {item.quantity}
-                    <span
-                      className="btn btn-secondary ms-4"
-                      onClick={() => dispatch(removeItemFromCart(item))}
-                    >
-                      -
-                    </span>
-                  </td>
-                  <td>$ {item.price}</td>
-                  <td
-                    className="text-danger cursor-pointer"
-                    onClick={() => dispatch(clearItemFromCart(item))}
-                  >
-                    remove
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    <main className="max-w-4xl mx-auto px-3">
+      <div className="flex flex-col">
+        {cartItems.map((cartItem) => (
+          <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        ))}
+      </div>
+      <h3 className="text-xl text-center  font-semibold text-yellow-500 mb-3">
+        SubTotal : <span className="text-gray-700">${cartTotal}</span>
+      </h3>
+      <PaymentForm />
+    </main>
+  )
+}
 
-        <div className="card col-4 p-2">
-          <h3 className="mt-3">Total: ${cartTotal}</h3>
-          <PaymentForm />
+const CheckoutItem = ({ cartItem }) => {
+  const dispatch = useDispatch()
+
+  return (
+    <div className="flex space-x-3 mb-3 p-3 bg-gray-200 rounded-md">
+      <img
+        className="w-24 rounded-md"
+        src={cartItem.imageUrl}
+        alt="Item image"
+      />
+      <div className="space-y-3">
+        <div>
+          <h4>Item : {cartItem.name}</h4>
+          <p>Quantity : {cartItem.quantity}</p>
+          <p>Price : ${cartItem.price}</p>
+        </div>
+        <div className="flex space-x-3 text-xs">
+          <button
+            className="px-2 py-1 bg-slate-300 rounded-lg"
+            onClick={() => dispatch(clearItemFromCart(cartItem))}
+          >
+            clear
+          </button>
+          <button
+            className="px-2 py-1 bg-slate-300 rounded-lg"
+            onClick={() => dispatch(addItemToCart(cartItem))}
+          >
+            increase
+          </button>
+          <button
+            className="px-2 py-1 bg-slate-300 rounded-lg"
+            onClick={() => dispatch(removeItemFromCart(cartItem))}
+          >
+            decrease
+          </button>
         </div>
       </div>
     </div>
