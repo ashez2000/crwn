@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import { signOutUser } from '../../lib/firebase/firebase.lib'
@@ -13,14 +13,14 @@ const Header = () => {
     <header className="mb-3">
       <nav className="p-3 flex justify-between items-center h-24 max-w-4xl mx-auto">
         <h1 className="text-xl text-yellow-500 font-semibold ">
-          <Link to="/">Crwn</Link>
+          <Link href="/">Crwn</Link>
         </h1>
         <ul className="flex space-x-3 font-semibold">
           <li>
-            <Link to="/shop">Shop</Link>
+            <Link href="/shop">Shop</Link>
           </li>
           <li>
-            <Link to="/checkout">Cart</Link>
+            <Link href="/checkout">Cart</Link>
           </li>
           {currentUser && (
             <li className="cursor-pointer">
@@ -29,7 +29,7 @@ const Header = () => {
           )}
           {!currentUser && (
             <li>
-              <Link to="/login">Login</Link>
+              <Link href="/login">Login</Link>
             </li>
           )}
         </ul>

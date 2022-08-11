@@ -1,8 +1,4 @@
-import { useNavigate } from 'react-router-dom'
-
 const CategoryItem = ({ category }) => {
-  const navigate = useNavigate()
-
   return (
     <div
       className="relative h-48 rounded-md overflow-hidden cursor-pointer"
