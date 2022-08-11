@@ -1,8 +1,12 @@
+import { useRouter } from 'next/router'
+
 const CategoryItem = ({ category }) => {
+  const router = useRouter()
+
   return (
     <div
       className="relative h-48 rounded-md overflow-hidden cursor-pointer"
-      onClick={() => navigate(`/shop/${category.title}`)}
+      onClick={() => router.push(`/shop/${category.title}`)}
     >
       <div className="absolute w-full h-full flex justify-center items-center">
         <span className="bg-white opacity-60 text-center p-3 rounded-md">

@@ -1,5 +1,5 @@
-import CategoryItem from '../category-item/category-item.component'
-import categories from '../../data/categories'
+import CategoryItem from './CategoryItem'
+import categories from '../data/categories.json'
 
 const Directory = () => {
   return (

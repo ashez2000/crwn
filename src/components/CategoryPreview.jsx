@@ -1,27 +1,27 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-import ItemCard from '../item-card/item-card.component'
-import { selectCollectionsMap } from '../../store/collection/collection.selector'
+import ItemCard from './ItemCard'
+import { selectCollectionsMap } from '../store/collection/collection.selector'
 
-const CollectionsPreview = () => {
+const CategoryPreview = () => {
   const collections = useSelector(selectCollectionsMap)
 
   return (
     <main className="max-w-4xl mx-auto px-3">
       {Object.keys(collections).map((k) => {
         return (
-          <SingleCollectionPreview key={k} title={k} items={collections[k]} />
+          <SingleCategoryPreview key={k} title={k} items={collections[k]} />
         )
       })}
     </main>
   )
 }
 
-const SingleCollectionPreview = ({ title, items }) => {
+const SingleCategoryPreview = ({ title, items }) => {
   return (
     <div className="">
-      <Link to={`/shop/${title}`}>
+      <Link href={`/shop/${title}`}>
         <h3 className="text-2xl text-center text-yellow-500 font-semibold mb-10">
           {title.toUpperCase()}
         </h3>
@@ -39,4 +39,4 @@ const SingleCollectionPreview = ({ title, items }) => {
   )
 }
 
-export default CollectionsPreview
+export default CategoryPreview
