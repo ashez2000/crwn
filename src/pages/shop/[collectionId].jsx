@@ -1,12 +1,14 @@
-import { useParams } from 'react-router-dom'
+import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
-import ItemCard from '../../components/item-card/item-card.component'
+import ItemCard from '../../components/ItemCard'
 
 import { selectCollectionsMap } from '../../store/collection/collection.selector'
 
 const CollectionPage = () => {
-  const { collectionId } = useParams()
+  const router = useRouter()
+  const { collectionId } = router.query
+
   const collections = useSelector(selectCollectionsMap)
   const collection = collections[collectionId]
 

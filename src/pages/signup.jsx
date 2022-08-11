@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import {
   googleLoginWithPopup,
@@ -12,11 +13,11 @@ const SignUpPage = () => {
   const [displayName, setDisplayName] = useState('')
   const [password, setPassword] = useState('')
 
-  const navigate = useNavigate()
+  const router = useRouter()
 
   const googleLogin = async () => {
     await googleLoginWithPopup()
-    navigate('/')
+    router.push('/')
   }
 
   const handleSubmit = async (e) => {
@@ -33,7 +34,7 @@ const SignUpPage = () => {
     setEmail('')
     setPassword('')
 
-    navigate('/')
+    router.push('/')
   }
 
   return (
@@ -80,8 +81,8 @@ const SignUpPage = () => {
       </form>
       <p className="text-center text-gray-500 mt-3">
         Already have an account?{` `}
-        <Link className="text-yellow-500" to="/login">
-          Login
+        <Link href="/login">
+          <a className="text-yellow-500">Login</a>
         </Link>
       </p>
     </main>

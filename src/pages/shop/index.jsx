@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import CollectionPage from './collection.page'
-import CollectionsPreview from '../../components/collection-preview/collections-preview.component'
+import CategoryPreview from '../../components/CategoryPreview'
 import { fetchCollectionAndDocuments } from '../../store/collection/collection.action'
 
 const ShopPage = () => {
@@ -13,12 +11,7 @@ const ShopPage = () => {
     dispatch(fetchCollectionAndDocuments())
   }, [])
 
-  return (
-    <Routes>
-      <Route path="/" element={<CollectionsPreview />} />
-      <Route path="/:collectionId" element={<CollectionPage />} />
-    </Routes>
-  )
+  return <CategoryPreview />
 }
 
 export default ShopPage
