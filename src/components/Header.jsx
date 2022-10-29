@@ -1,40 +1,27 @@
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 
-import { signOutUser } from '../lib/firebase/firebase.lib'
-import { selectCurrentUser } from '../store/auth/auth.selector'
-import { selectCartItemsCount } from '../store/cart/cart.selector'
-
-const Header = () => {
-  const currentUser = useSelector(selectCurrentUser)
-  const cartItemsCount = useSelector(selectCartItemsCount)
-
+function Header() {
   return (
-    <header className="mb-3">
-      <nav className="p-3 flex justify-between items-center h-24 max-w-4xl mx-auto">
-        <h1 className="text-xl text-yellow-500 font-semibold ">
-          <Link href="/">Crwn</Link>
-        </h1>
-        <ul className="flex space-x-3 font-semibold">
-          <li>
-            <Link href="/shop">Shop</Link>
-          </li>
-          <li>
-            <Link href="/checkout">Cart</Link>
-          </li>
-          {currentUser && (
-            <li className="cursor-pointer">
-              <span onClick={signOutUser}>Logout</span>
-            </li>
-          )}
-          {!currentUser && (
-            <li>
-              <Link href="/login">Login</Link>
-            </li>
-          )}
-        </ul>
-      </nav>
-    </header>
+    <Navbar bg="light" expand="lg" className="mb-3">
+      <Container>
+        <Link href="/">
+          <Navbar.Brand className="cursor-pointer">CRWN</Navbar.Brand>
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Link href="/checkout">
+              <Nav.Link as="a" className="cursor-pointer">
+                CART
+              </Nav.Link>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

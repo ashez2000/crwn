@@ -1,4 +1,7 @@
 import { useDispatch } from 'react-redux'
+import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import {
   addItemToCart,
@@ -10,38 +13,43 @@ const CheckoutItem = ({ cartItem }) => {
   const dispatch = useDispatch()
 
   return (
-    <div className="flex space-x-3 mb-3 p-3 bg-gray-200 rounded-md">
-      <img
-        className="w-24 rounded-md"
+    <div className="d-flex">
+      <Image
+        thumbnail
+        rounded
         src={cartItem.imageUrl}
         alt="Item image"
+        width={150}
       />
-      <div className="space-y-3">
+      <div className="ms-3">
         <div>
           <h4>Item : {cartItem.name}</h4>
           <p>Quantity : {cartItem.quantity}</p>
           <p>Price : ${cartItem.price}</p>
         </div>
-        <div className="flex space-x-3 text-xs">
-          <button
+        <ButtonGroup>
+          <Button
+            variant="secondary"
             className="px-2 py-1 bg-slate-300 rounded-lg"
             onClick={() => dispatch(clearItemFromCart(cartItem))}
           >
             clear
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="secondary"
             className="px-2 py-1 bg-slate-300 rounded-lg"
             onClick={() => dispatch(addItemToCart(cartItem))}
           >
             increase
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="secondary"
             className="px-2 py-1 bg-slate-300 rounded-lg"
             onClick={() => dispatch(removeItemFromCart(cartItem))}
           >
             decrease
-          </button>
-        </div>
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   )

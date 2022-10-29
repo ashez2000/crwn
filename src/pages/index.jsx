@@ -10,7 +10,7 @@ const HomePage = () => {
     <MainLayout>
       <Row>
         {products.map((product) => (
-          <Col key={product.id} xs={12} md={6} lg={4}>
+          <Col key={product.name} xs={12} md={6} lg={4}>
             <ProductCard key={product.id} item={product} />
           </Col>
         ))}
