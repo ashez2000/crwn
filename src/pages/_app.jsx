@@ -1,3 +1,4 @@
+import '../styles/bootstrap.min.css'
 import '../styles/main.css'
 import ReduxProvider from '../store/provider'
 import Layout from '../components/Layout'
