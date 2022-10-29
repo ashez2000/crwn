@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import Container from 'react-bootstrap/Container'
 
 import {
   onAuthStateChangedListener,
@@ -31,7 +32,7 @@ const MainLayout = ({ children }) => {
   return (
     <div className="layout">
       <Header />
-      {children}
+      <Container as="main">{children}</Container>
       <Footer />
     </div>
   )
