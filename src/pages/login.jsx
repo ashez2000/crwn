@@ -6,6 +6,7 @@ import {
   googleLoginWithPopup,
   signInAuthUserWithEmailAndPassword,
 } from '../lib/firebase/firebase.lib'
+import MainLayout from '../layouts/MainLayout'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -33,7 +34,7 @@ const LoginPage = () => {
   }
 
   return (
-    <main className="max-w-lg mx-auto flex flex-col px-3 mb-3">
+    <MainLayout className="max-w-lg mx-auto flex flex-col px-3 mb-3">
       <h3 className="text-3xl text-yellow-500 font-semibold mb-3">Login</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -72,7 +73,7 @@ const LoginPage = () => {
           <a className="text-yellow-500">Signup</a>
         </Link>
       </p>
-    </main>
+    </MainLayout>
   )
 }
 

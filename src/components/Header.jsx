@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-import { signOutUser } from '../../lib/firebase/firebase.lib'
-import { selectCurrentUser } from '../../store/auth/auth.selector'
-import { selectCartItemsCount } from '../../store/cart/cart.selector'
+import { signOutUser } from '../lib/firebase/firebase.lib'
+import { selectCurrentUser } from '../store/auth/auth.selector'
+import { selectCartItemsCount } from '../store/cart/cart.selector'
 
 const Header = () => {
   const currentUser = useSelector(selectCurrentUser)

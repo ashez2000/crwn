@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { selectCartItems, selectCartTotal } from '../store/cart/cart.selector'
 import CheckoutItem from '../components/CheckoutItem'
+import MainLayout from '../layouts/MainLayout'
 
 const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems)
@@ -24,7 +25,7 @@ const CheckoutPage = () => {
   }
 
   return (
-    <main className="max-w-4xl mx-auto px-3">
+    <MainLayout className="max-w-4xl mx-auto px-3">
       <div className="flex flex-col">
         {cartItems.map((cartItem) => (
           <CheckoutItem key={cartItem.id} cartItem={cartItem} />
@@ -33,7 +34,7 @@ const CheckoutPage = () => {
       <h3 className="text-xl text-center  font-semibold text-yellow-500 mb-3">
         SubTotal : <span className="text-gray-700">${cartTotal}</span>
       </h3>
-    </main>
+    </MainLayout>
   )
 }
 

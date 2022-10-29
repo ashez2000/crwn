@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import ItemCard from '../../components/ItemCard'
+import MainLayout from '../../layouts/MainLayout'
 
 import { selectCollectionsMap } from '../../store/collection/collection.selector'
 
@@ -17,7 +18,7 @@ const CollectionPage = () => {
   }
 
   return (
-    <main className="max-w-4xl mx-auto px-3">
+    <MainLayout className="max-w-4xl mx-auto px-3">
       <h4 className="text-2xl text-center text-yellow-500 font-semibold mb-10">
         {collectionId.toUpperCase()}
       </h4>
@@ -26,7 +27,7 @@ const CollectionPage = () => {
           <ItemCard key={item.id} item={item} />
         ))}
       </div>
-    </main>
+    </MainLayout>
   )
 }
 
