@@ -1,58 +1,26 @@
-import { useDispatch } from 'react-redux'
-import Image from 'react-bootstrap/Image'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import { useCart } from '../context/cart.context';
 
-import {
-  addItemToCart,
-  removeItemFromCart,
-  clearItemFromCart,
-} from '../store/cart/cart.slice'
-
-const CheckoutItem = ({ cartItem }) => {
-  const dispatch = useDispatch()
+export default function CheckoutItem({ item }) {
+  const { addToCart, removeFromCart } = useCart();
 
   return (
-    <div className="d-flex">
-      <Image
-        thumbnail
-        rounded
-        src={cartItem.imageUrl}
-        alt="Item image"
-        width={150}
-      />
-      <div className="ms-3">
-        <div>
-          <h4>Item : {cartItem.name}</h4>
-          <p>Quantity : {cartItem.quantity}</p>
-          <p>Price : ${cartItem.price}</p>
-        </div>
-        <ButtonGroup>
-          <Button
-            variant="secondary"
-            className="px-2 py-1 bg-slate-300 rounded-lg"
-            onClick={() => dispatch(clearItemFromCart(cartItem))}
-          >
-            clear
-          </Button>
-          <Button
-            variant="secondary"
-            className="px-2 py-1 bg-slate-300 rounded-lg"
-            onClick={() => dispatch(addItemToCart(cartItem))}
-          >
-            increase
-          </Button>
-          <Button
-            variant="secondary"
-            className="px-2 py-1 bg-slate-300 rounded-lg"
-            onClick={() => dispatch(removeItemFromCart(cartItem))}
-          >
-            decrease
-          </Button>
-        </ButtonGroup>
+    <div className="border p-3">
+      <h2>{item.name}</h2>
+      <p>Price: ${item.price}</p>
+      <p>Quantity: {item.quantity}</p>
+      <p>Total: ${item.price * item.quantity}</p>
+
+      <div className="btn-group btn-group-sm">
+        <button className="btn btn-primary" onClick={() => addToCart(item)}>
+          Add
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={() => removeFromCart(item.id)}
+        >
+          Remove
+        </button>
       </div>
     </div>
-  )
+  );
 }
-
-export default CheckoutItem
