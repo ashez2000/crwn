@@ -1,38 +1,18 @@
-import axios from 'axios'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import MainLayout from '../layouts/MainLayout';
+import CategoryItem from '../components/CategoryItem';
+import categories from '../data/categories.json';
 
-import config from '../config'
-
-import MainLayout from '../layouts/MainLayout'
-import ProductCard from '../components/ProductCard'
-
-const HomePage = (props) => {
-  const { products } = props
-
-  console.log(config.apiUrl)
-
+export default function Home() {
   return (
     <MainLayout>
-      <Row>
-        {products.map((product) => (
-          <Col key={product.name} xs={12} md={6} lg={4}>
-            <ProductCard key={product.id} item={product} />
-          </Col>
+      <div className="mb-3">
+        <h2 className="text-primary">Categories</h2>
+      </div>
+      <div className="d-flex flex-column gap-3">
+        {categories.map((category) => (
+          <CategoryItem key={category.id} item={category} />
         ))}
-      </Row>
+      </div>
     </MainLayout>
-  )
+  );
 }
-
-export async function getServerSideProps(context) {
-  const res = await axios.get(`${config.apiUrl}/api/products`)
-
-  return {
-    props: {
-      products: res.data,
-    },
-  }
-}
-
-export default HomePage

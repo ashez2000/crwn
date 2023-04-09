@@ -1,13 +1,8 @@
-import '../styles/bootstrap.min.css'
-import '../styles/main.css'
-import ReduxProvider from '../store/provider'
+import '../styles/bootstrap.css';
+import '../styles/main.css';
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <ReduxProvider>
-      <Component {...pageProps} />
-    </ReduxProvider>
-  )
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;
