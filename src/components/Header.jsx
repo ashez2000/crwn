@@ -11,6 +11,14 @@ export default function Header() {
         <Link className="nav-link" href="/checkout">
           Checkout
         </Link>
+
+        <Link className="nav-link" href="/signup">
+          Sign Up
+        </Link>
+
+        <Link className="nav-link" href="/signin">
+          Sign In
+        </Link>
       </nav>
     </header>
   );
