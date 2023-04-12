@@ -1,5 +1,10 @@
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+
 import MainLayout from '../layouts/MainLayout';
+import { useEffect } from 'react';
 
 export default function SignUp() {
   const {
@@ -8,9 +13,37 @@ export default function SignUp() {
     formState: { errors },
   } = useForm();
 
+  const { data: session } = useSession();
+  const router = useRouter();
+  const { redirect } = router.query;
+
   const _handleSubmit = async ({ name, email, password }) => {
-    console.log(name, email, password);
+    try {
+      await axios.post('/api/auth/signup', {
+        name,
+        email,
+        password,
+      });
+
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (result.error) {
+        console.error(result.error);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  useEffect(() => {
+    if (session?.user) {
+      router.push(redirect || '/');
+    }
+  }, [router, session, redirect]);
 
   return (
     <MainLayout>
