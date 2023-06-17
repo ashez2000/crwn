@@ -30,20 +30,16 @@ const categories = [
 
 export default function Home() {
     return (
-        <div>
-            <h1>Home</h1>
+        <div className="d-grid gap-3">
+            <div className="row row-cols-3">
+                <CategoryItem item={categories[0]} />
+                <CategoryItem item={categories[1]} />
+                <CategoryItem item={categories[2]} />
+            </div>
 
-            <div className="d-grid gap-3">
-                <div className="row row-cols-3">
-                    <CategoryItem item={categories[0]} />
-                    <CategoryItem item={categories[1]} />
-                    <CategoryItem item={categories[2]} />
-                </div>
-
-                <div className="row row-cols-2">
-                    <CategoryItem item={categories[3]} size="lg" />
-                    <CategoryItem item={categories[4]} size="lg" />
-                </div>
+            <div className="row row-cols-2">
+                <CategoryItem item={categories[3]} size="lg" />
+                <CategoryItem item={categories[4]} size="lg" />
             </div>
         </div>
     )
