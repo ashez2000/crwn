@@ -1,4 +1,5 @@
 import { db } from '@/db/conn'
+import ProductItem from '@/components/ProductItem'
 
 export default async function Products() {
     const products = await db.product.findMany()
@@ -6,13 +7,11 @@ export default async function Products() {
     return (
         <div>
             <h1>Products</h1>
-            <ul>
+            <div className="row row-cols-4">
                 {products.map((product) => (
-                    <li key={product.id}>
-                        {product.name} - {product.price}
-                    </li>
+                    <ProductItem key={product.id} product={product} />
                 ))}
-            </ul>
+            </div>
         </div>
     )
 }
