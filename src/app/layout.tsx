@@ -1,6 +1,8 @@
 import './bootstrap.css'
 import './global.css'
 
+import Provider from './provider'
+
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -16,9 +18,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en">
             <body>
-                <Header />
-                <main className="container">{children}</main>
-                <Footer />
+                <Provider>
+                    <Header />
+                    <main className="container">{children}</main>
+                    <Footer />
+                </Provider>
             </body>
         </html>
     )
