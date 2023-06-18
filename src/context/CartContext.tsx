@@ -1,7 +1,7 @@
 'use client'
 
 import { Product } from '@prisma/client'
-import { createContext, useState } from 'react'
+import { createContext, useState, useContext } from 'react'
 
 type CartContextType = {
     cart: Product[]
@@ -11,6 +11,8 @@ type CartContextType = {
 }
 
 const CartContext = createContext<CartContextType>({} as CartContextType)
+
+export const useCart = () => useContext(CartContext)
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const [cart, setCart] = useState<Product[]>([])

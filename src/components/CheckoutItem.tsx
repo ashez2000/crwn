@@ -3,12 +3,12 @@
 import { useCart } from '@/context/CartContext'
 import { Product } from '@prisma/client'
 
-type ProductItemProps = {
+type CheckoutItemProps = {
     product: Product
 }
 
-export default function ProductItem({ product }: ProductItemProps) {
-    const { addToCart } = useCart()
+export default function CheckoutItem({ product }: CheckoutItemProps) {
+    const { removeFromCart } = useCart()
 
     return (
         <div className="mb-5">
@@ -30,9 +30,9 @@ export default function ProductItem({ product }: ProductItemProps) {
             <div className="d-grid">
                 <button
                     className="btn btn-sm btn-primary"
-                    onClick={() => addToCart(product)}
+                    onClick={() => removeFromCart(product)}
                 >
-                    Add to Cart
+                    Remove
                 </button>
             </div>
         </div>
