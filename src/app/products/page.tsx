@@ -1,4 +1,4 @@
-import { db } from '@/db/conn'
+import { db } from '@/lib/prisma'
 import ProductItem from '@/components/ProductItem'
 
 export default async function Products() {

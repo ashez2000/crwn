@@ -1,5 +1,5 @@
 import ProductItem from '@/components/ProductItem'
-import { db } from '@/db/conn'
+import { db } from '@/lib/prisma'
 import { Product } from '@prisma/client'
 
 export default async function Category({
