@@ -19,7 +19,7 @@ export default function Header() {
             Sign Up
           </Link>
 
-          <Link className="nav-link" href="/signin">
+          <Link className="nav-link" href="/auth/sign-in">
             Sign In
           </Link>
         </nav>

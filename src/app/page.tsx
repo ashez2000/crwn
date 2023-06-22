@@ -1,46 +1,56 @@
 import CategoryItem from '@/components/CategoryItem'
+import { getAuthSession } from '@/lib/next-auth'
 
 const categories = [
-    {
-        id: 1,
-        title: 'hats',
-        image: 'https://i.ibb.co/cvpntL1/hats.png',
-    },
-    {
-        id: 2,
-        title: 'jackets',
-        image: 'https://i.ibb.co/px2tCc3/jackets.png',
-    },
-    {
-        id: 3,
-        title: 'sneakers',
-        image: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-    },
-    {
-        id: 4,
-        title: 'womens',
-        image: 'https://i.ibb.co/GCCdy8t/womens.png',
-    },
-    {
-        id: 5,
-        title: 'mens',
-        image: 'https://i.ibb.co/R70vBrQ/men.png',
-    },
+  {
+    id: 1,
+    title: 'hats',
+    image: 'https://i.ibb.co/cvpntL1/hats.png',
+  },
+  {
+    id: 2,
+    title: 'jackets',
+    image: 'https://i.ibb.co/px2tCc3/jackets.png',
+  },
+  {
+    id: 3,
+    title: 'sneakers',
+    image: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+  },
+  {
+    id: 4,
+    title: 'womens',
+    image: 'https://i.ibb.co/GCCdy8t/womens.png',
+  },
+  {
+    id: 5,
+    title: 'mens',
+    image: 'https://i.ibb.co/R70vBrQ/men.png',
+  },
 ]
 
-export default function Home() {
-    return (
-        <div className="d-grid gap-3">
-            <div className="row row-cols-3">
-                <CategoryItem item={categories[0]} />
-                <CategoryItem item={categories[1]} />
-                <CategoryItem item={categories[2]} />
-            </div>
+export default async function Home() {
+  const session = await getAuthSession()
 
-            <div className="row row-cols-2">
-                <CategoryItem item={categories[3]} size="lg" />
-                <CategoryItem item={categories[4]} size="lg" />
-            </div>
+  return (
+    <div>
+      <div className="d-grid gap-3">
+        <div className="row row-cols-3">
+          <CategoryItem item={categories[0]} />
+          <CategoryItem item={categories[1]} />
+          <CategoryItem item={categories[2]} />
         </div>
-    )
+
+        <div className="row row-cols-2">
+          <CategoryItem item={categories[3]} size="lg" />
+          <CategoryItem item={categories[4]} size="lg" />
+        </div>
+      </div>
+      <div>
+        <pre>
+          <code>{JSON.stringify(session, null, 2)}</code>
+        </pre>
+      </div>
+    </div>
+  )
 }
