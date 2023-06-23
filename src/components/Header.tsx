@@ -32,6 +32,12 @@ export default async function Header() {
             </Link>
           )}
 
+          {session && (
+            <Link className="nav-link" href="/orders">
+              Orders
+            </Link>
+          )}
+
           {session && <SignOut />}
         </nav>
       </div>

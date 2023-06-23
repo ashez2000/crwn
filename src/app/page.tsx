@@ -46,11 +46,6 @@ export default async function Home() {
           <CategoryItem item={categories[4]} size="lg" />
         </div>
       </div>
-      <div>
-        <pre>
-          <code>{JSON.stringify(session, null, 2)}</code>
-        </pre>
-      </div>
     </div>
   )
 }
