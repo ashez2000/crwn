@@ -12,6 +12,8 @@ model User {
   name     String
   email    String @unique
   password String
+
+  Order Order[]
 }
 
 model Product {
@@ -20,6 +22,18 @@ model Product {
   price    Int
   image    String
   category String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  products String[]
+  total    Int
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
