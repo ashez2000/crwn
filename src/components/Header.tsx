@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function Header() {
+import SignOut from './SignOut'
+import { getAuthSession } from '@/lib/next-auth'
+
+export default async function Header() {
+  const session = await getAuthSession()
+
   return (
     <header className="m-5">
       <div className="container d-flex justify-content-between align-items-center">
@@ -15,13 +20,19 @@ export default function Header() {
             Checkout
           </Link>
 
-          <Link className="nav-link" href="/auth/sign-up">
-            Sign Up
-          </Link>
+          {!session && (
+            <Link className="nav-link" href="/auth/sign-up">
+              Sign Up
+            </Link>
+          )}
 
-          <Link className="nav-link" href="/auth/sign-in">
-            Sign In
-          </Link>
+          {!session && (
+            <Link className="nav-link" href="/auth/sign-in">
+              Sign In
+            </Link>
+          )}
+
+          {session && <SignOut />}
         </nav>
       </div>
     </header>
