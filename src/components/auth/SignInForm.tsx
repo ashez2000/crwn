@@ -30,7 +30,7 @@ export default function SignInForm() {
 
       await axios.post('/api/auth/sign-in', data)
 
-      router.push('/')
+      router.back()
     } catch (err) {
       const error = err as any
       toast.error(error.response?.data.message || error.message)

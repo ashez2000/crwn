@@ -7,7 +7,7 @@ export default async function Orders() {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
-    return <div>Access Denied</div>
+    return null
   }
 
   const orders = await db.order.findMany({
@@ -17,6 +17,9 @@ export default async function Orders() {
     include: {
       items: true,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   })
 
   return (
@@ -24,15 +27,15 @@ export default async function Orders() {
       <h1>Orders</h1>
       <hr />
       {orders.map((order) => (
-        <div className="card p-3" key={order.id}>
+        <div className="card p-3 mb-3" key={order.id}>
           <div className="mb-3">
-            Order ID : {order.id} - Total Items : {order.items.length}
+            <div>Order ID : {order.id}</div>
+            <div>Ordered on : {order.createdAt.toString()}</div>
           </div>
           <OrderItems items={order.items} />
           <div>
             <span>
-              Total Price : $
-              {order.items.reduce((acc, item) => acc + item.price, 0)}
+              Total : ${order.items.reduce((acc, item) => acc + item.price, 0)}
             </span>
           </div>
         </div>
