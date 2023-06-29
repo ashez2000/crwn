@@ -31,8 +31,9 @@ model Product {
 
 model CartItem {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  price     Int
   quantity  Int
-  total     Int
   productId String @db.ObjectId
   orderId   String @db.ObjectId
 
@@ -45,7 +46,6 @@ model CartItem {
 
 model Order {
   id     String     @id @default(auto()) @map("_id") @db.ObjectId
-  total  Int
   items  CartItem[]
   userId String     @db.ObjectId
 

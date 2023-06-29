@@ -3,9 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "start": "next start",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "seed": "node ./seeder/seed.js",
     "lint": "next lint"
   },
   "dependencies": {

@@ -34,7 +34,7 @@ export default function Checkout() {
           Total : $
           {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}
         </h4>
-        <InstantCheckout products={cartItems} />
+        <InstantCheckout items={cartItems} />
       </div>
     </div>
   )

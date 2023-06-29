@@ -1,21 +1,18 @@
 'use client'
 
 import axios from 'axios'
-import { Product } from '@prisma/client'
 import Button from 'react-bootstrap/Button'
+import { CartItem } from '@/context/CartContext'
 
 type Props = {
-  products: Product[]
+  items: CartItem[]
 }
 
-export default function InstantCheckout(props: Props) {
-  const { products } = props
-
+export default function InstantCheckout({ items }: Props) {
   const handleCheckout = async () => {
     try {
       const { data } = await axios.post('/api/checkout', {
-        products,
-        total: products.reduce((acc, item) => acc + item.price, 0),
+        items,
       })
 
       console.log(data)

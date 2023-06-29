@@ -1,6 +1,8 @@
 import { db } from '@/lib/prisma'
 import { getCurrentUser } from '@/utils/auth.utils'
 
+import OrderItems from '@/components/order/OrderItems'
+
 export default async function Orders() {
   const currentUser = getCurrentUser()
 
@@ -12,27 +14,29 @@ export default async function Orders() {
     where: {
       userId: currentUser.id,
     },
+    include: {
+      items: true,
+    },
   })
 
   return (
     <div>
       <h1>Orders</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>${order.total}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <hr />
+      {orders.map((order) => (
+        <div className="card p-3" key={order.id}>
+          <div className="mb-3">
+            Order ID : {order.id} - Total Items : {order.items.length}
+          </div>
+          <OrderItems items={order.items} />
+          <div>
+            <span>
+              Total Price : $
+              {order.items.reduce((acc, item) => acc + item.price, 0)}
+            </span>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
