@@ -1,5 +1,6 @@
 'use client'
 
+import { toast } from 'react-hot-toast'
 import { useCart } from '@/context/CartContext'
 import { Product } from '@prisma/client'
 
@@ -7,8 +8,8 @@ type Props = {
   product: Product
 }
 
-export default function CheckoutItem({ product }: Props) {
-  const { removeFromCart } = useCart()
+export default function Product({ product }: Props) {
+  const { addToCart } = useCart()
 
   return (
     <div className="mb-5">
@@ -30,9 +31,12 @@ export default function CheckoutItem({ product }: Props) {
       <div className="d-grid">
         <button
           className="btn btn-sm btn-primary"
-          onClick={() => removeFromCart(product.id)}
+          onClick={() => {
+            addToCart(product)
+            toast.success(`${product.name} added to cart`)
+          }}
         >
-          Remove
+          Add to Cart
         </button>
       </div>
     </div>

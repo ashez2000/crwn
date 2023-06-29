@@ -1,32 +1,40 @@
 'use client'
 
-import CheckoutItem from '@/components/CheckoutItem'
+import CartItem from '@/components/cart/CartItem'
 import { useCart } from '@/context/CartContext'
 import InstantCheckout from '@/components/InstantCheckout'
 
 export default function Checkout() {
-  const { cart } = useCart()
+  const { cartItems, clearCart } = useCart()
 
-  if (cart.length === 0)
+  if (cartItems.length === 0)
     return (
       <div>
-        <h3 className="text-center">Your cart is empty</h3>
+        <h3 className="text-center mb-3">Your cart is empty</h3>
       </div>
     )
 
   return (
     <div>
-      <h1>Your cart</h1>
+      <h1 className="mb-3">
+        Your cart{' '}
+        <span className="btn" onClick={clearCart}>
+          clear cart
+        </span>
+      </h1>
       <div className="row row-cols-4">
-        {cart.map((item) => (
-          <CheckoutItem key={item.id} product={item} />
+        {cartItems.map((item) => (
+          <CartItem key={item.id} item={item} />
         ))}
       </div>
 
       <hr />
       <div className="d-flex justify-content-between align-items-center">
-        <h4>Total: $ {cart.reduce((acc, item) => acc + item.price, 0)}</h4>
-        <InstantCheckout products={cart} />
+        <h4>
+          Total : $
+          {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}
+        </h4>
+        <InstantCheckout products={cartItems} />
       </div>
     </div>
   )

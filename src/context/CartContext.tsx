@@ -2,6 +2,7 @@
 
 import { Product } from '@prisma/client'
 import { createContext, useState, useContext, useEffect } from 'react'
+import { toast } from 'react-hot-toast'
 
 export type CartItem = Product & { quantity: number }
 
@@ -9,6 +10,7 @@ type CartContextType = {
   cartItems: CartItem[]
   addToCart: (product: Product) => void
   removeFromCart: (id: string) => void
+  clearFromCart: (id: string) => void
   clearCart: () => void
 }
 
@@ -69,6 +71,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         cartItems,
         addToCart,
         removeFromCart,
+        clearFromCart,
         clearCart,
       }}
     >

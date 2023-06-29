@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
+import CartCount from './cart/CartCount'
 import SignOut from './SignOut'
 import { getCurrentUser } from '@/utils/auth.utils'
 
@@ -17,7 +18,7 @@ export default async function Header() {
         </div>
         <nav className="nav">
           <Link className="nav-link" href="/checkout">
-            Checkout
+            Checkout ({<CartCount />})
           </Link>
 
           {!user && (
