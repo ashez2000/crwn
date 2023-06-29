@@ -1,5 +1,4 @@
 import CategoryItem from '@/components/CategoryItem'
-import { getAuthSession } from '@/lib/next-auth'
 
 const categories = [
   {
@@ -29,9 +28,7 @@ const categories = [
   },
 ]
 
-export default async function Home() {
-  const session = await getAuthSession()
-
+export default function Home() {
   return (
     <div>
       <div className="d-grid gap-3">

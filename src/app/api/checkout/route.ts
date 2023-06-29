@@ -1,11 +1,11 @@
-import { getAuthSession } from '@/lib/next-auth'
 import { db } from '@/lib/prisma'
+import { getCurrentUser } from '@/utils/auth.utils'
 import { Product } from '@prisma/client'
 
 export async function POST(req: Request) {
-  const session = await getAuthSession()
+  const user = getCurrentUser()
 
-  if (!session) {
+  if (!user) {
     return new Response(null, { status: 401 })
   }
 
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     data: {
       total,
       products: products.map((product) => product.id),
-      userId: session.user.id,
+      userId: user.id,
     },
   })
 

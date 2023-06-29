@@ -1,8 +1,8 @@
 'use client'
 
+import axios from 'axios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { signIn } from 'next-auth/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
@@ -28,10 +28,7 @@ export default function SignInForm() {
     try {
       setIsLoading(true)
 
-      await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-      })
+      await axios.post('/api/auth/sign-in', data)
 
       router.push('/')
     } catch (err) {

@@ -1,16 +1,16 @@
-import { getAuthSession } from '@/lib/next-auth'
 import { db } from '@/lib/prisma'
+import { getCurrentUser } from '@/utils/auth.utils'
 
 export default async function Orders() {
-  const session = await getAuthSession()
+  const currentUser = getCurrentUser()
 
-  if (!session) {
+  if (!currentUser) {
     return <div>Access Denied</div>
   }
 
   const orders = await db.order.findMany({
     where: {
-      userId: session.user.id,
+      userId: currentUser.id,
     },
   })
 
