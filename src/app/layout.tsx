@@ -9,6 +9,9 @@ import Footer from '@/components/Footer'
 
 export const metadata = {
   title: 'CRWN | Clothing Store',
+  icons: {
+    icon: '/crwn.svg',
+  },
 }
 
 type Props = {
