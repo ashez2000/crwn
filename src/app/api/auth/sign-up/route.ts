@@ -5,7 +5,14 @@ export async function POST(req: Request) {
   const { name, email, password } = await req.json()
   const hash = await argon.hash(password)
 
-  const user = await db.user.create({
+  const exist = await db.user.findUnique({ where: { email } })
+  if (exist) {
+    return new Response(JSON.stringify({ message: 'Email already exist' }), {
+      status: 400,
+    })
+  }
+
+  await db.user.create({
     data: {
       name,
       email,
@@ -13,5 +20,5 @@ export async function POST(req: Request) {
     },
   })
 
-  return new Response(JSON.stringify(user), { status: 201 })
+  return new Response(null, { status: 201 })
 }
