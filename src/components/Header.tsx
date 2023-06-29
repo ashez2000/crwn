@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import CartCount from './cart/CartCount'
-import SignOut from './SignOut'
 import { getCurrentUser } from '@/utils/auth.utils'
+import CartCount from './cart/CartCount'
+import Nav from './Nav'
 
 export default async function Header() {
   const user = getCurrentUser()
@@ -21,25 +21,7 @@ export default async function Header() {
             Checkout ({<CartCount />})
           </Link>
 
-          {!user && (
-            <Link className="nav-link" href="/auth/sign-up">
-              Sign Up
-            </Link>
-          )}
-
-          {!user && (
-            <Link className="nav-link" href="/auth/sign-in">
-              Sign In
-            </Link>
-          )}
-
-          {user && (
-            <Link className="nav-link" href="/orders">
-              Orders
-            </Link>
-          )}
-
-          {user && <SignOut />}
+          <Nav user={user} />
         </nav>
       </div>
     </header>
