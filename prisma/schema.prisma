@@ -3,54 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String @unique
-  password String
-
-  Order Order[]
-}
-
 model Product {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  price    Int
-  image    String
-  category String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  cartItems CartItem[]
-}
-
-model CartItem {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  price     Int
-  quantity  Int
-  productId String @db.ObjectId
-  orderId   String @db.ObjectId
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  product Product @relation(fields: [productId], references: [id])
-  order   Order   @relation(fields: [orderId], references: [id])
-}
-
-model Order {
-  id     String     @id @default(auto()) @map("_id") @db.ObjectId
-  items  CartItem[]
-  userId String     @db.ObjectId
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id])
+  id    String @id @default(cuid())
+  name  String @unique
+  price Int
+  image String
 }
