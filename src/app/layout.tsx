@@ -1,3 +1,4 @@
+import Navbar from '@/components/navbar'
 import Provider from '@/components/provider'
 
 import '@/styles/bootstrap.css'
@@ -18,7 +19,12 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <header>
+            <Navbar />
+          </header>
+          <main className="container">{children}</main>
+        </Provider>
       </body>
     </html>
   )
