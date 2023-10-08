@@ -8,8 +8,9 @@ datasource db {
 }
 
 model Product {
-  id    String @id @default(cuid())
-  name  String @unique
-  price Int
-  image String
+  id       String @id @default(cuid())
+  name     String @unique
+  price    Int
+  image    String
+  category String
 }

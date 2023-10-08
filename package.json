@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "tsx seed/main.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.4.1",
@@ -20,6 +21,7 @@
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "prisma": "^5.4.1",
+    "tsx": "^3.13.0",
     "typescript": "^5"
   }
 }
