@@ -1,3 +1,5 @@
+import Provider from '@/components/provider'
+
 import '@/styles/bootstrap.css'
 import '@/styles/global.css'
 
@@ -15,7 +17,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   )
 }
