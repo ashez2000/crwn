@@ -8,7 +8,7 @@ export default async function RootPage({}: Props) {
 
   return (
     <>
-      <div>
+      <div className="grid grid-cols-4 gap-3">
         {products.map(p => (
           <ProductCard key={p.id} product={p} />
         ))}
