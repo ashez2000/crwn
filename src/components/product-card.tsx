@@ -1,10 +1,15 @@
+'use client'
+
 import { Product } from '@prisma/client'
+import { useCart } from '@/hooks/user-cart'
 
 type Props = {
   product: Product
 }
 
 export default function ProductCard({ product }: Props) {
+  const { addToCart } = useCart()
+
   return (
     <div className="card">
       <div
@@ -17,7 +22,9 @@ export default function ProductCard({ product }: Props) {
           : product.name}
       </div>
       <div>
-        <button>${product.price} | Add to Cart</button>
+        <button onClick={() => addToCart(product)}>
+          ${product.price} | Add to Cart
+        </button>
       </div>
     </div>
   )
