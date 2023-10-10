@@ -8,6 +8,7 @@ export default function Navbar({}: Props) {
       <div className="font-bold">CRWN</div>
       <div className="flex gap-3">
         <Link href="/cart">cart</Link>
+        <Link href="/signup">signup</Link>
       </div>
     </nav>
   )
