@@ -6,8 +6,7 @@ import { useState } from 'react'
 
 type Props = {}
 
-export default function SignUpPage({}: Props) {
-  const [name, setName] = useState('')
+export default function SignInPage({}: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -16,8 +15,7 @@ export default function SignUpPage({}: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const res = await axios.post('/api/auth/signup', {
-        name,
+      const res = await axios.post('/api/auth/signin', {
         email,
         password,
       })
@@ -31,15 +29,8 @@ export default function SignUpPage({}: Props) {
 
   return (
     <div className="max-w-sm mx-auto">
-      <h1 className="text-2xl mb-3">Signup</h1>
+      <h1 className="text-2xl mb-3">Signin</h1>
       <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-        <input
-          className="border rounded-md px-3 py-2"
-          type="text"
-          placeholder="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
         <input
           className="border rounded-md px-3 py-2"
           type="email"
@@ -57,7 +48,7 @@ export default function SignUpPage({}: Props) {
         <input
           className="rounded-md px-3 py-2 bg-slate-300"
           type="submit"
-          value="signup"
+          value="signin"
         />
       </form>
     </div>
