@@ -1,6 +1,7 @@
 'use client'
 
 import { useCart } from '@/hooks/user-cart'
+import Link from 'next/link'
 
 export default function CartPage() {
   const { cart, removeFromCart } = useCart()
@@ -36,6 +37,12 @@ export default function CartPage() {
         Subtotal : $
         {cart.reduce((acc, c) => acc + c.product.price * c.quantity, 0)}
       </div>
+
+      <hr className="mb-3" />
+
+      <Link href="/checkout" className="px-3 bg-slate-300 rounded-sm">
+        Checkout
+      </Link>
     </div>
   )
 }
