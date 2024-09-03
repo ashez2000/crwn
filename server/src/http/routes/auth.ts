@@ -1,7 +1,8 @@
-import { Router } from 'express'
+import { Router, Response } from 'express'
 import bcrypt from 'bcryptjs'
 
 import prisma from '../../lib/prisma.js'
+import { generateTokens } from '../../lib/jwt.js'
 
 const routes = Router()
 
@@ -22,18 +23,8 @@ routes.post('/signup', async (req, res) => {
     data: { name, email, password: hash, role },
   })
 
-  res.status(201).json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  })
+  sendAuthResponse(res, user)
 })
-
-async function findUserByEmail(email: string) {
-  return prisma.user.findUnique({
-    where: { email },
-  })
-}
 
 // route: POST /auth/signin
 routes.post('/signin', async (req, res) => {
@@ -54,16 +45,59 @@ routes.post('/signin', async (req, res) => {
     })
   }
 
-  res.status(200).json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  })
+  sendAuthResponse(res, user)
 })
 
 // route: POST /auth/signout
 routes.post('/signout', async (req, res) => {
   res.status(200).json({})
 })
+
+async function findUserByEmail(email: string) {
+  return prisma.user.findUnique({
+    where: { email },
+  })
+}
+
+function setCookies(
+  res: Response,
+  tokens: {
+    accessToken: string
+    refreshToken: string
+  }
+) {
+  res.cookie('accessToken', tokens.accessToken, {
+    httpOnly: true,
+    sameSite: 'strict',
+    maxAge: 16 * 60 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV == 'production',
+  })
+
+  res.cookie('refreshToken', tokens.refreshToken, {
+    httpOnly: true,
+    sameSite: 'strict',
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    secure: process.env.NODE_ENV == 'production',
+  })
+}
+
+/** sendAuthResponse generates tokens, sets cookies and sends response with user data */
+function sendAuthResponse(
+  res: Response,
+  user: {
+    id: string
+    name: string
+    email: string
+  }
+) {
+  const { id, name, email } = user
+  const tokens = generateTokens(user.id)
+  setCookies(res, tokens)
+  res.status(200).json({
+    id,
+    name,
+    email,
+  })
+}
 
 export default routes
