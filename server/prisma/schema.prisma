@@ -14,3 +14,11 @@ model User {
   password String
   role     String
 }
+
+model Product {
+  id       String @id @default(uuid())
+  name     String @unique
+  price    Int
+  image    String
+  category String
+}
